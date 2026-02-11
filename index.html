@@ -3,10 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para ti, mi amor ❤️</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Para Ti, Mi Amor ❤️</title>
     <style>
         * {
             margin: 0;
@@ -15,14 +12,62 @@
         }
 
         body {
-            font-family: 'Montserrat', sans-serif;
-            min-height: 100vh;
+            font-family: 'Georgia', serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
             overflow-x: hidden;
+            position: relative;
         }
 
-        /* Partículas flotantes de corazones */
-        .hearts-container {
+        /* Animación de entrada - cortina de corazones */
+        .entrance-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            animation: fadeOut 1s ease-in-out 3s forwards;
+        }
+
+        .entrance-text {
+            font-size: 3rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: heartbeat 1.5s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+
+        .entrance-subtext {
+            font-size: 1.5rem;
+            color: white;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out 1.5s forwards;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Corazones flotantes de fondo */
+        .floating-hearts {
             position: fixed;
             top: 0;
             left: 0;
@@ -34,21 +79,21 @@
 
         .heart {
             position: absolute;
-            font-size: 20px;
-            opacity: 0;
-            animation: float-hearts 8s infinite;
+            font-size: 2rem;
+            animation: float 10s infinite;
+            opacity: 0.6;
         }
 
-        @keyframes float-hearts {
+        @keyframes float {
             0% {
                 transform: translateY(100vh) rotate(0deg);
                 opacity: 0;
             }
             10% {
-                opacity: 1;
+                opacity: 0.6;
             }
             90% {
-                opacity: 1;
+                opacity: 0.6;
             }
             100% {
                 transform: translateY(-100px) rotate(360deg);
@@ -56,28 +101,21 @@
             }
         }
 
-        /* Página de bienvenida */
-        .welcome-page {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
+        /* Contenedor principal */
+        .container {
             position: relative;
             z-index: 2;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            opacity: 0;
+            animation: slideIn 1s ease-out 3.5s forwards;
         }
 
-        .welcome-content {
-            text-align: center;
-            color: white;
-            animation: fadeIn 2s ease-in-out;
-        }
-
-        @keyframes fadeIn {
+        @keyframes slideIn {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(50px);
             }
             to {
                 opacity: 1;
@@ -85,256 +123,340 @@
             }
         }
 
-        .welcome-content h1 {
-            font-size: 3.5em;
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-        }
-
-        .welcome-content p {
-            font-size: 1.5em;
-            font-weight: 300;
-            margin-bottom: 40px;
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
-        }
-
-        .enter-btn {
-            background: white;
-            color: #667eea;
-            border: none;
-            padding: 18px 50px;
-            font-size: 1.2em;
-            font-weight: 600;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .enter-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Página de la pregunta */
-        .question-page {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .question-container {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 60px 50px;
-            border-radius: 30px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        /* Título principal */
+        .main-title {
             text-align: center;
-            max-width: 600px;
-            animation: slideIn 1s ease-out;
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            animation: glow 2s ease-in-out infinite;
         }
 
-        @keyframes slideIn {
+        @keyframes glow {
+            0%, 100% { text-shadow: 3px 3px 6px rgba(0,0,0,0.3); }
+            50% { text-shadow: 3px 3px 20px rgba(255,255,255,0.8); }
+        }
+
+        /* Carta */
+        .letter-container {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+            margin-bottom: 30px;
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+        }
+
+        .letter-container:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Decoración de esquinas */
+        .corner-decoration {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: url('https://raw.githubusercontent.com/twitter/twemoji/master/assets/72x72/1f339.png') no-repeat center;
+            background-size: contain;
+            opacity: 0.3;
+        }
+
+        .corner-decoration.top-left {
+            top: -20px;
+            left: -20px;
+            transform: rotate(-20deg);
+        }
+
+        .corner-decoration.top-right {
+            top: -20px;
+            right: -20px;
+            transform: rotate(20deg);
+        }
+
+        .corner-decoration.bottom-left {
+            bottom: -20px;
+            left: -20px;
+            transform: rotate(-20deg);
+        }
+
+        .corner-decoration.bottom-right {
+            bottom: -20px;
+            right: -20px;
+            transform: rotate(20deg);
+        }
+
+        /* Contenido de la carta */
+        .letter-header {
+            text-align: center;
+            font-size: 2rem;
+            color: #e91e63;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .letter-body {
+            font-size: 1.2rem;
+            line-height: 2;
+            color: #333;
+            text-align: justify;
+            margin-bottom: 30px;
+        }
+
+        .letter-body p {
+            margin-bottom: 20px;
+            animation: fadeInText 1s ease-out backwards;
+        }
+
+        .letter-body p:nth-child(1) { animation-delay: 4s; }
+        .letter-body p:nth-child(2) { animation-delay: 4.5s; }
+        .letter-body p:nth-child(3) { animation-delay: 5s; }
+        .letter-body p:nth-child(4) { animation-delay: 5.5s; }
+
+        @keyframes fadeInText {
             from {
                 opacity: 0;
-                transform: scale(0.8);
+                transform: translateX(-20px);
             }
             to {
                 opacity: 1;
-                transform: scale(1);
+                transform: translateX(0);
             }
         }
 
-        .question-container h2 {
-            font-size: 2.5em;
-            color: #764ba2;
-            margin-bottom: 20px;
-            font-weight: 700;
+        .signature {
+            text-align: right;
+            font-size: 1.5rem;
+            font-style: italic;
+            color: #e91e63;
+            margin-top: 40px;
         }
 
-        .question-container .subtitle {
-            font-size: 1.3em;
-            color: #667eea;
-            margin-bottom: 40px;
-            font-weight: 500;
-        }
-
-        .heart-decoration {
-            font-size: 4em;
-            margin: 20px 0;
-            animation: heartbeat 1.5s ease-in-out infinite;
-        }
-
-        @keyframes heartbeat {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.2);
-            }
-        }
-
-        .buttons-container {
+        /* Galería de imágenes románticas */
+        .image-gallery {
             display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
             gap: 20px;
-            justify-content: center;
-            margin-top: 30px;
-            position: relative;
-            min-height: 60px;
         }
 
-        .answer-btn {
-            padding: 15px 40px;
-            font-size: 1.2em;
-            font-weight: 600;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Montserrat', sans-serif;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        .romantic-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+            animation: pulse 3s ease-in-out infinite;
         }
 
-        .yes-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .romantic-image:nth-child(1) { animation-delay: 0s; }
+        .romantic-image:nth-child(2) { animation-delay: 1s; }
+        .romantic-image:nth-child(3) { animation-delay: 2s; }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .romantic-image:hover {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        /* Botón especial */
+        .special-button-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .special-button {
+            display: inline-block;
+            padding: 20px 50px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4);
+            transition: all 0.3s ease;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
         }
 
-        .yes-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .no-btn {
-            background: #f0f0f0;
-            color: #666;
+        .special-button::before {
+            content: '';
             position: absolute;
-            transition: all 0.2s ease;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
         }
 
+        .special-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .special-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(245, 87, 108, 0.6);
+        }
+
+        .special-button span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .welcome-content h1 {
-                font-size: 2.5em;
+            .main-title {
+                font-size: 2rem;
             }
             
-            .welcome-content p {
-                font-size: 1.2em;
+            .letter-container {
+                padding: 30px 20px;
             }
-
-            .question-container {
-                padding: 40px 30px;
+            
+            .letter-body {
+                font-size: 1rem;
             }
-
-            .question-container h2 {
-                font-size: 2em;
+            
+            .entrance-text {
+                font-size: 2rem;
             }
-
-            .question-container .subtitle {
-                font-size: 1.1em;
+            
+            .entrance-subtext {
+                font-size: 1.2rem;
             }
-
-            .buttons-container {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .no-btn {
-                position: static;
+            
+            .romantic-image {
+                width: 100px;
+                height: 100px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Contenedor de corazones flotantes -->
-    <div class="hearts-container" id="heartsContainer"></div>
-
-    <!-- Página de bienvenida -->
-    <div class="welcome-page" id="welcomePage">
-        <div class="welcome-content">
-            <h1>✨ Bienvenida mi vida ✨</h1>
-            <p>Tengo algo muy especial que preguntarte...</p>
-            <button class="enter-btn" onclick="showQuestion()">Continuar ❤️</button>
-        </div>
+    <!-- Animación de entrada -->
+    <div class="entrance-animation">
+        <div class="entrance-text">❤️ Para Ti ❤️</div>
+        <div class="entrance-subtext">Mi Amor Eterno...</div>
     </div>
 
-    <!-- Página de la pregunta -->
-    <div class="question-page" id="questionPage">
-        <div class="question-container">
-            <h2>Mi amor...</h2>
-            <div class="heart-decoration">💕</div>
-            <p class="subtitle">¿Quieres ser mi San Valentín?</p>
-            <div class="buttons-container">
-                <button class="answer-btn yes-btn" onclick="goToLetter()">¡Sí! 💖</button>
-                <button class="answer-btn no-btn" id="noBtn" onmouseover="moveButton()" onclick="moveButton()">No</button>
+    <!-- Corazones flotantes -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+
+    <!-- Contenido principal -->
+    <div class="container">
+        <h1 class="main-title">💕 Carta de Amor para Ti 💕</h1>
+
+        <div class="letter-container">
+            <div class="corner-decoration top-left"></div>
+            <div class="corner-decoration top-right"></div>
+            <div class="corner-decoration bottom-left"></div>
+            <div class="corner-decoration bottom-right"></div>
+
+            <div class="letter-header">
+                Para el amor de mi vida...
             </div>
+
+            <div class="letter-body">
+                <p>
+                    💝 Desde el momento en que entraste en mi vida, todo cambió. Tu sonrisa ilumina mis días más oscuros, y tu amor me ha enseñado el verdadero significado de la felicidad.
+                </p>
+                <p>
+                    🌹 Cada día a tu lado es un regalo que atesoro en mi corazón. Tu risa es la melodía más hermosa que he escuchado, y tus ojos son el universo en el que quiero perderme una y otra vez.
+                </p>
+                <p>
+                    ✨ Eres mi mejor amiga, mi confidente, mi inspiración y mi hogar. Contigo he descubierto que el amor verdadero existe, y que cuando encuentras a tu alma gemela, todo lo demás tiene sentido.
+                </p>
+                <p>
+                    💖 Gracias por amarme tal como soy, por hacerme mejor persona cada día, y por llenar mi vida de colores. Te amo hoy, te amaré mañana y te amaré por siempre.
+                </p>
+            </div>
+
+            <div class="image-gallery">
+                <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=400" alt="Corazón" class="romantic-image">
+                <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=400" alt="Amor" class="romantic-image">
+                <img src="https://images.unsplash.com/photo-1519904817324-0e13e5e09a59?w=400" alt="Rosa" class="romantic-image">
+            </div>
+
+            <div class="signature">
+                Con todo mi amor,<br>
+                Tu admirador eterno 💕
+            </div>
+        </div>
+
+        <div class="special-button-container">
+            <a href="TU_LINK_AQUI" class="special-button" target="_blank">
+                <span>🎁 Una Sorpresa Especial para Ti 🎁</span>
+            </a>
         </div>
     </div>
 
     <script>
         // Crear corazones flotantes
-        function createHearts() {
-            const container = document.getElementById('heartsContainer');
-            const heartSymbols = ['❤️', '💕', '💖', '💗', '💓', '💝'];
+        function createFloatingHearts() {
+            const container = document.getElementById('floatingHearts');
+            const hearts = ['❤️', '💕', '💖', '💗', '💝', '💘', '🌹'];
             
-            setInterval(() => {
+            for (let i = 0; i < 20; i++) {
                 const heart = document.createElement('div');
                 heart.className = 'heart';
-                heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
                 heart.style.left = Math.random() * 100 + '%';
-                heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
-                heart.style.animationDelay = Math.random() * 2 + 's';
+                heart.style.animationDuration = (Math.random() * 5 + 8) + 's';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
                 container.appendChild(heart);
-
-                setTimeout(() => {
-                    heart.remove();
-                }, 8000);
-            }, 800);
+            }
         }
 
-        createHearts();
+        // Inicializar cuando carga la página
+        window.addEventListener('load', () => {
+            createFloatingHearts();
+        });
 
-        // Mostrar página de pregunta
-        function showQuestion() {
-            document.getElementById('welcomePage').style.display = 'none';
-            document.getElementById('questionPage').style.display = 'flex';
-        }
+        // Efecto de partículas al hacer click
+        document.addEventListener('click', (e) => {
+            const hearts = ['❤️', '💕', '💖'];
+            for (let i = 0; i < 3; i++) {
+                const particle = document.createElement('div');
+                particle.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                particle.style.position = 'fixed';
+                particle.style.left = e.clientX + 'px';
+                particle.style.top = e.clientY + 'px';
+                particle.style.fontSize = '2rem';
+                particle.style.pointerEvents = 'none';
+                particle.style.zIndex = '9999';
+                particle.style.animation = 'particleFloat 1s ease-out forwards';
+                document.body.appendChild(particle);
 
-        // Mover botón "No"
-        function moveButton() {
-            const btn = document.getElementById('noBtn');
-            const container = document.querySelector('.question-container');
-            
-            const maxX = container.offsetWidth - btn.offsetWidth - 100;
-            const maxY = container.offsetHeight - btn.offsetHeight - 100;
-            
-            const randomX = Math.random() * maxX;
-            const randomY = Math.random() * maxY;
-            
-            btn.style.position = 'absolute';
-            btn.style.left = randomX + 'px';
-            btn.style.top = randomY + 'px';
-        }
+                setTimeout(() => particle.remove(), 1000);
+            }
+        });
 
-        // Ir a la carta de amor
-        function goToLetter() {
-            window.location.href = 'carta.html';
-        }
+        // Animación de partículas
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes particleFloat {
+                to {
+                    transform: translateY(-100px) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
