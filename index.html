@@ -16,7 +16,8 @@
 
         body {
             font-family: 'Lora', serif;
-            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 50%, #f67280 100%);
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fad0c4 100%);
+            background-attachment: fixed;
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
@@ -29,13 +30,20 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #c94b4b 0%, #4b134f 100%);
+            background: linear-gradient(135deg, #fc5c7d 0%, #6a82fb 50%, #ff6b9d 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 6s ease infinite;
             z-index: 10000;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             padding: 20px;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         .intro-phrase {
@@ -80,7 +88,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #c94b4b 0%, #4b134f 100%);
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 8s ease infinite;
             z-index: 9999;
             display: flex;
             flex-direction: column;
@@ -127,6 +137,23 @@
             border-radius: 20px;
             border: 8px solid #fff;
             box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            display: block;
+        }
+
+        /* Placeholder para cuando no carga la imagen */
+        .photo-placeholder {
+            width: 500px;
+            max-width: 90%;
+            height: 400px;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #ffeaa7 100%);
+            border-radius: 20px;
+            border: 8px solid #fff;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            filter: drop-shadow(0 0 20px rgba(255,255,255,0.5));
         }
 
         .valentines-message {
@@ -144,7 +171,7 @@
         .valentines-submessage {
             font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
-            color: #ffcccb;
+            color: #fff;
             text-align: center;
             max-width: 700px;
             opacity: 0;
@@ -191,7 +218,7 @@
             position: absolute;
             font-size: 2rem;
             animation: float 12s infinite;
-            opacity: 0.5;
+            opacity: 0.6;
         }
 
         @keyframes float {
@@ -200,10 +227,10 @@
                 opacity: 0;
             }
             10% {
-                opacity: 0.5;
+                opacity: 0.6;
             }
             90% {
-                opacity: 0.5;
+                opacity: 0.6;
             }
             100% {
                 transform: translateY(-100px) rotate(360deg);
@@ -249,19 +276,19 @@
                 text-shadow: 4px 4px 12px rgba(0,0,0,0.4);
             }
             50% { 
-                text-shadow: 4px 4px 25px rgba(255,255,255,0.6), 0 0 40px rgba(255,107,157,0.8);
+                text-shadow: 4px 4px 25px rgba(255,255,255,0.8), 0 0 40px rgba(255,107,157,0.9);
             }
         }
 
         /* Carta principal */
         .letter-card {
-            background: #fff;
+            background: linear-gradient(135deg, #fff 0%, #ffe5e5 100%);
             border-radius: 25px;
             padding: 60px;
-            box-shadow: 0 25px 70px rgba(0,0,0,0.4);
+            box-shadow: 0 25px 70px rgba(252,92,125,0.4);
             position: relative;
             margin-bottom: 40px;
-            border: 3px solid #ff6b9d;
+            border: 3px solid #ff9a9e;
         }
 
         /* Decoraciones de rosas en las esquinas */
@@ -270,7 +297,8 @@
             width: 80px;
             height: 80px;
             font-size: 4rem;
-            opacity: 0.6;
+            opacity: 0.7;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
         }
 
         .rose-decoration.top-left {
@@ -298,9 +326,10 @@
             text-align: center;
             font-family: 'Dancing Script', cursive;
             font-size: 3rem;
-            color: #c94b4b;
+            color: #fc5c7d;
             margin-bottom: 40px;
             line-height: 1.3;
+            text-shadow: 1px 1px 3px rgba(252,92,125,0.3);
         }
 
         /* Cuerpo de la carta */
@@ -321,14 +350,14 @@
         .letter-content p:first-letter {
             font-size: 3rem;
             font-weight: bold;
-            color: #c94b4b;
+            color: #fc5c7d;
             float: left;
             line-height: 1;
             margin-right: 8px;
         }
 
         .highlight {
-            color: #c94b4b;
+            color: #fc5c7d;
             font-weight: 600;
         }
 
@@ -337,7 +366,7 @@
             text-align: right;
             font-family: 'Dancing Script', cursive;
             font-size: 2rem;
-            color: #c94b4b;
+            color: #fc5c7d;
             margin-top: 50px;
             line-height: 1.6;
         }
@@ -348,7 +377,7 @@
             text-align: center;
             margin: 40px 0;
             font-size: 2rem;
-            color: #ff6b9d;
+            color: #ff9a9e;
         }
 
         /* Botón especial */
@@ -360,14 +389,14 @@
         .special-button {
             display: inline-block;
             padding: 25px 60px;
-            background: linear-gradient(135deg, #c94b4b 0%, #4b134f 100%);
+            background: linear-gradient(135deg, #fc5c7d 0%, #ff9a9e 100%);
             color: white;
             text-decoration: none;
             font-family: 'Playfair Display', serif;
             font-size: 1.6rem;
             font-weight: 700;
             border-radius: 60px;
-            box-shadow: 0 15px 40px rgba(201, 75, 75, 0.5);
+            box-shadow: 0 15px 40px rgba(252,92,125,0.5);
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
@@ -382,7 +411,7 @@
             width: 0;
             height: 0;
             border-radius: 50%;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.3);
             transform: translate(-50%, -50%);
             transition: width 0.6s, height 0.6s;
         }
@@ -394,7 +423,7 @@
 
         .special-button:hover {
             transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 20px 50px rgba(201, 75, 75, 0.7);
+            box-shadow: 0 20px 50px rgba(252,92,125,0.7);
         }
 
         .special-button span {
@@ -477,8 +506,10 @@
                 font-size: 1.3rem;
             }
             
-            .couple-photo {
+            .couple-photo,
+            .photo-placeholder {
                 max-width: 100%;
+                width: 100%;
             }
         }
     </style>
@@ -497,8 +528,11 @@
     <!-- PANTALLA 2: Foto con mensaje de San Valentín -->
     <div class="photo-screen" id="photoScreen">
         <div class="photo-container">
-            <!-- IMPORTANTE: Reemplaza "tu_foto_pareja.jpg" con el nombre de tu imagen -->
-            <img src="IMG_20260211_190911.jpg" alt="Nuestra foto juntos" class="couple-photo">
+            <!-- La imagen se cargará aquí. Si no funciona, se mostrará un placeholder -->
+            <img src="IMG_20260211_190911.jpg" alt="Nuestra foto juntos" class="couple-photo" id="couplePhoto">
+            <div class="photo-placeholder" id="photoPlaceholder">
+                📸💕
+            </div>
         </div>
         <h1 class="valentines-message">
             💕 Feliz Día de San Valentín 💕
@@ -554,13 +588,27 @@
         </div>
 
         <div class="button-container">
-            <a href="TU_LINK_AQUI" class="special-button" target="_blank">
+            <a href="#" class="special-button" onclick="alert('¡Aquí puedes poner un enlace a una playlist, video, galería de fotos o cualquier sorpresa especial!'); return false;">
                 <span>🎁 Una Sorpresa Especial para Ti 🎁</span>
             </a>
         </div>
     </div>
 
     <script>
+        // Manejar la carga de la imagen
+        const couplePhoto = document.getElementById('couplePhoto');
+        const photoPlaceholder = document.getElementById('photoPlaceholder');
+
+        couplePhoto.onerror = function() {
+            this.style.display = 'none';
+            photoPlaceholder.style.display = 'flex';
+        };
+
+        couplePhoto.onload = function() {
+            photoPlaceholder.style.display = 'none';
+            this.style.display = 'block';
+        };
+
         // Control de las pantallas de introducción
         setTimeout(() => {
             document.getElementById('photoScreen').classList.add('show');
@@ -597,50 +645,4 @@
             const container = document.getElementById('petalsContainer');
             const petals = ['🌸', '🌺', '🌹', '🌷'];
             
-            for (let i = 0; i < 15; i++) {
-                const petal = document.createElement('div');
-                petal.className = 'petal';
-                petal.textContent = petals[Math.floor(Math.random() * petals.length)];
-                petal.style.left = Math.random() * 100 + '%';
-                petal.style.animationDuration = (Math.random() * 4 + 6) + 's';
-                petal.style.animationDelay = Math.random() * 5 + 's';
-                container.appendChild(petal);
-            }
-        }
-
-        // Iniciar efectos continuos
-        function createContinuousEffects() {
-            createFloatingHearts();
-            createPetals();
-        }
-
-        // Efecto de partículas románticas al hacer click
-        document.addEventListener('click', (e) => {
-            const symbols = ['❤️', '💕', '💖', '✨'];
-            for (let i = 0; i < 5; i++) {
-                const particle = document.createElement('div');
-                particle.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-                particle.style.position = 'fixed';
-                particle.style.left = (e.clientX + (Math.random() - 0.5) * 50) + 'px';
-                particle.style.top = (e.clientY + (Math.random() - 0.5) * 50) + 'px';
-                particle.style.fontSize = '1.5rem';
-                particle.style.pointerEvents = 'none';
-                particle.style.zIndex = '9999';
-                particle.style.animation = 'particleFloat 1.5s ease-out forwards';
-                document.body.appendChild(particle);
-
-                setTimeout(() => particle.remove(), 1500);
-            }
-        });
-
-        // Animación de partículas
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes particleFloat {
-                to {
-                    transform: translateY(-120px) rotate(360deg) scale(0);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.he
+            for (let i = 0; i < 15; i++) 
